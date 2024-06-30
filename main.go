@@ -37,7 +37,7 @@ func RunWriter() <-chan map[string]float64 {
 				currentPrice[key] = value + 1
 			}
 			prices <- maps.Clone(currentPrice) //клонируем текущую мапу в канал
-			//time.Sleep(time.Second)
+
 		}
 		close(prices)
 	}()
@@ -54,7 +54,6 @@ func main() {
 	for _, price := range prices {
 		fmt.Println(price)
 	}
-
 	wg := &sync.WaitGroup{}
 	mu := &sync.Mutex{}
 	wg.Add(3)
